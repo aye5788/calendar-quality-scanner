@@ -3,15 +3,15 @@ import numpy as np
 def iv_slope(front_iv, back_iv):
     return front_iv - back_iv
 
-def vega_theta_ratio(vf, vb, tf, tb):
-    net_vega = vb - vf
-    net_theta = abs(tf) - abs(tb)
+def vega_theta_ratio(vega_f, vega_b, theta_f, theta_b):
+    net_vega = vega_b - vega_f
+    net_theta = abs(theta_f) - abs(theta_b)
     if net_theta <= 0:
         return np.nan
     return net_vega / net_theta
 
-def theta_advantage(tf, tb):
-    return abs(tf) - abs(tb)
+def theta_advantage(theta_f, theta_b):
+    return abs(theta_f) - abs(theta_b)
 
 def iv_ratio(front_iv, back_iv):
     return front_iv / back_iv if back_iv != 0 else np.nan

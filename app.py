@@ -59,7 +59,7 @@ def interpret_with_openai(results_df, cores, ticker):
     }
 
     # Highly efficient prompt
-    prompt = f"""
+        prompt = f"""
 Analyze calendar spread quality for {ticker}.
 
 Metrics (top 5 rows):
@@ -69,13 +69,21 @@ ATM term structure:
 {json.dumps(term_structure)}
 
 Provide:
-1. Term structure interpretation (impact on calendars)
-2. Best back expirations and why
-3. Any red flags (debit, IV slope, vega/theta)
-4. Simple bottom-line recommendation
+1. Term structure interpretation and what it implies for calendar spreads.
+2. Identify which back expirations appear strongest and why.
+3. Call out any red flags (debit too high, negative IV slope, vega/theta mismatch, etc).
+4. Give a bottom-line summary.
+5. KEEP UNDER 150 WORDS.
 
-Keep under 150 words.
+6. **MANDATORY TRADE RECOMMENDATION SECTION**  
+   Based on the data only:
+   - Recommend ONE specific calendar spread (front expiry + best back expiry).
+   - Use the ATM strike ({atmK}).
+   - Give a fair debit estimate using the table.
+   - Give a risk note (IV slope, theta, term structure).
+   - Give a simple exit plan: e.g., “Exit at 60–100% return or if debit collapses / IV inverts.”
 """
+
 
     # OpenAI API call — lightweight & capped
     response = requests.post(

@@ -59,7 +59,7 @@ def interpret_with_openai(results_df, cores, ticker):
     }
 
     # Highly efficient prompt
-        prompt = f"""
+    prompt = f"""
 Analyze calendar spread quality for {ticker}.
 
 Metrics (top 5 rows):

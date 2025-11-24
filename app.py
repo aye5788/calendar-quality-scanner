@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
+st.write("Secrets loaded:", st.secrets.keys())
 
 from utils.orats_api import ORATS
 from utils.calendar_metrics import (
